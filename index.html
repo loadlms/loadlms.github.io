@@ -1,0 +1,30 @@
+<!DOCTYPE html5>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css" >
+    <title>Calculadora</title>
+
+</head>
+<body>
+    <form>
+        <h1><u><i>Calculadora Básica</i></u></h1>
+        <h4>Faça o cálculo de dois números digitando abaixo:</h4>
+        N1: <input type="text" id="n1"><br><br>
+        N2: <input type="text" id="n2"><br><br>
+        <input type="button" id="button" value="Somar" onclick="calcular('+')">
+        <input type="button" id="button" value="Subtrair" onclick="calcular('-')">
+        <input type="button" id="button" value="Dividir" onclick="calcular('/')">
+        <input type="button" id="button" value="Multiplicar" onclick="calcular('*')">
+        <h2>O resultado é... </h2>
+    </form>
+    <script src="script.js"></script>
+    <div><p id="result">___</p></div>
+    <footer>
+        
+        <p> &copy; 2024 <a href="https://github.com/loadlms" target="_blank">@loadlms</a>.</p>
+    
+    </footer>
+</body>
+</html>

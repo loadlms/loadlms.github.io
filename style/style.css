@@ -1,0 +1,74 @@
+body {
+   background-color: rgb(38, 38, 38);
+}
+form {
+    text-align: center;
+    background-color: rgb(199, 199, 199);
+    border-radius: 1rem;
+    display: block;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#button {
+    color: white;
+    border-radius: 5rem;
+    background-color: rgb(44, 183, 34);
+}
+#button:hover{
+    color: chartreuse;
+    background-color:rgb(20, 100, 31);
+    padding: 0.50%;
+
+}
+h1 {
+    color: rgb(251, 251, 251);
+    background-color: rgb(118, 118, 118);
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+h2 {
+    color: rgb(251, 251, 251);
+    background-color: rgb(118, 118, 118);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+div {
+    color: blanchedalmond;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    align-self:center;
+    border-radius: 1rem;
+    position: center;
+    font-size: 50;
+    height: 50%;
+    border: solid;
+    background-color: rgb(118, 118, 118);
+}
+div p {
+    text-align: center;
+    align-self:center;
+    margin: 50;
+    height: 68%;
+    display: flexbox;
+    border-radius: 1cqmax;
+    line-height: 460%;
+    border: solid;
+    color: rgb(255, 255, 255);
+    background-color: rgb(46, 48, 50);
+}
+
+footer {
+    color: rgb(251, 251, 251);
+    background-color: rgb(118, 118, 118);
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-right: 100%;
+    display: flex-box;
+    }
+
+footer p {
+    margin: 0;
+}
