@@ -1187,6 +1187,13 @@ section {
         text-align: center;
     }
     
+    /* Para mobile, remover o alinhamento central que limita a largura */
+    @media (max-width: 768px) {
+        #skills .container {
+            align-items: stretch;
+        }
+    }
+    
     .section-title {
         text-align: center;
         margin-bottom: 2rem;
@@ -1195,10 +1202,20 @@ section {
     .mobile-skills-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .mobile-skill-category {
+        width: 100%;
+        max-width: none;
     }
     
     .mobile-skill-category {
         padding: 0.5rem;
+        width: 100%;
+        max-width: none;
     }
     
     .mobile-skills-list {
@@ -1215,6 +1232,11 @@ section {
 @media (max-width: 480px) {
     .container {
         padding: 0 2px;
+    }
+    
+    /* Garantir que as categorias de habilidades ocupem toda a largura */
+    .skills-mobile .container {
+        padding: 0 5px;
     }
     
     .nav-container {
