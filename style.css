@@ -1229,6 +1229,47 @@ section {
     }
 }
 
+/* Tablet should use the same layout as mobile */
+@media (max-width: 1024px) {
+    /* Show hamburger and stack nav menu */
+    .hamburger {
+        display: flex;
+    }
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--bg-darker);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+
+    /* Use mobile skills on tablets */
+    .skills-tree {
+        display: none;
+    }
+    .skills-mobile {
+        display: block;
+    }
+    #skills .container {
+        align-items: stretch;
+    }
+    .mobile-skills-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .mobile-skills-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 0 2px;
