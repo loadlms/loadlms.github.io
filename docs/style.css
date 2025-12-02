@@ -84,6 +84,17 @@ body {
 
 .nav-logo {
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+    box-shadow: 0 0 8px rgba(0, 255, 128, 0.4);
 }
 
 .logo-text {
