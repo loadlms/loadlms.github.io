@@ -96,14 +96,14 @@ body {
     border-radius: 50%;
     clip-path: circle(50%);
     overflow: hidden;
-    background-image: url('assets/favicon.png');
+    background-image: url('assets/favicon2.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     flex: 0 0 auto;
     vertical-align: middle;
     margin-right: 8px;
-    box-shadow: 0 0 8px rgba(0, 255, 128, 0.4);
+    border: 1px solid var(--primary-color);
 }
 
 .logo-text {
