@@ -91,8 +91,11 @@ body {
 .logo-icon {
     width: 28px;
     height: 28px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
+    overflow: hidden;
     object-fit: cover;
+    flex: 0 0 28px;
     margin-right: 8px;
     box-shadow: 0 0 8px rgba(0, 255, 128, 0.4);
 }
