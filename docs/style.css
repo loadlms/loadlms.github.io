@@ -96,7 +96,10 @@ body {
     border-radius: 50%;
     clip-path: circle(50%);
     overflow: hidden;
-    object-fit: cover;
+    background-image: url('assets/favicon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     flex: 0 0 auto;
     vertical-align: middle;
     margin-right: 8px;
