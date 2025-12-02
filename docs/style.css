@@ -90,20 +90,19 @@ body {
 
 .logo-icon {
     display: inline-block;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     clip-path: circle(50%);
     overflow: hidden;
-    background-image: url('assets/favicon2.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: radial-gradient(circle at 50% 50%, #00ff80 40%, #00e5a0 70%, rgba(0,255,136,0.1) 100%);
     flex: 0 0 auto;
     vertical-align: middle;
     margin-right: 8px;
-    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 255, 128, 0.4);
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .logo-text {
