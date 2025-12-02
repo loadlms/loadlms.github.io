@@ -96,7 +96,7 @@ body {
     border-radius: 50%;
     clip-path: circle(50%);
     overflow: hidden;
-    background-image: url('assets/favicon.png');
+    background-image: url('favicon.ico');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
