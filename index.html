@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo Lima - Desenvolvedor Full-Stack</title>
     <link rel="icon" type="image/svg+xml" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <!-- Cache busting to ensure GitHub Pages serves latest CSS -->
+    <link rel="stylesheet" href="style.css?v=20251111">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=20251111">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png?v=20251111">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -108,7 +113,7 @@
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <span class="stat-number">3</span>
+                        <span class="stat-number">4</span>
                         <span class="stat-label">Semestres de Ciência da Computação</span>
                     </div>
                     <div class="stat-item">
@@ -696,13 +701,13 @@
 
                 <div class="project-card">
                     <div class="project-preview">
-                        <iframe src="https://loadlms.github.io/IgorPiresPortifolio/" 
+                        <iframe src="https://loadlms.github.io/portifolioIgor/" 
                                 title="Igor Pires Portfolio Preview" 
                                 class="project-iframe"
                                 loading="lazy">
                         </iframe>
                         <div class="preview-overlay">
-                            <a href="https://loadlms.github.io/IgorPiresPortifolio/" target="_blank" class="preview-link">
+                            <a href="https://loadlms.github.io/portifolioIgor/" target="_blank" class="preview-link">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Ver Projeto</span>
                             </a>
@@ -712,7 +717,7 @@
                         <div class="project-header">
                             <h3 class="project-title">Igor Pires Portfolio</h3>
                             <div class="project-links">
-                                <a href="https://loadlms.github.io/IgorPiresPortifolio/" target="_blank" class="project-link">
+                                <a href="https://loadlms.github.io/portifolioIgor/" target="_blank" class="project-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -808,6 +813,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Cache busting for JS as well -->
+    <script src="script.js?v=20251111"></script>
 </body>
 </html>
