@@ -1,20 +1,20 @@
 // Aguarda o carregamento completo da página
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // Navegação móvel
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Toggle do menu mobile
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function () {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
     // Fecha o menu ao clicar em um link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Navegação suave
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 70;
                 window.scrollTo({
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { type: 'command', text: 'ls projects/', delay: 50 },
         { type: 'output', text: 'oficina/ igor-portfolio/ golliath-burgers/', delay: 20 },
         { type: 'command', text: 'git status', delay: 50 },
-        { type: 'output', text: 'On branch main - Your branch is up to date', delay: 20 }, 
+        { type: 'output', text: 'On branch main - Your branch is up to date', delay: 20 },
         { type: 'command', text: 'npm start', delay: 50 },
         { type: 'output', text: 'Server running on localhost:3000', delay: 20 }
     ];
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return new Promise((resolve) => {
             let i = 0;
             element.textContent = '';
-            
+
             function typeChar() {
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     resolve();
                 }
             }
-            
+
             typeChar();
         });
     }
@@ -77,10 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
     async function executeTerminalSequence() {
         // Remove o cursor inicial
         typingElement.textContent = '';
-        
+
         for (let i = 0; i < terminalSequence.length; i++) {
             const item = terminalSequence[i];
-            
+
             if (item.type === 'command') {
                 // Cria nova linha de comando
                 const commandLine = document.createElement('div');
@@ -89,39 +89,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="prompt">$</span>
                     <span class="command"></span>
                 `;
-                
+
                 // Remove a linha de digitação atual se existir
                 const typingElement = document.querySelector('.typing-animation');
                 if (typingElement && typingElement.parentElement) {
                     terminalBody.removeChild(typingElement.parentElement);
                 }
-                
+
                 terminalBody.appendChild(commandLine);
-                
+
                 // Digita o comando
                 const commandSpan = commandLine.querySelector('.command');
                 await typeText(commandSpan, item.text, 80);
-                
+
                 // Aguarda um pouco após digitar o comando
                 await new Promise(resolve => setTimeout(resolve, item.delay));
-                
+
             } else if (item.type === 'output') {
                 // Cria linha de output
                 const outputLine = document.createElement('div');
                 outputLine.className = 'terminal-line';
                 outputLine.innerHTML = `<span class="output"></span>`;
-                
+
                 terminalBody.appendChild(outputLine);
-                
+
                 // Digita o output
                 const outputSpan = outputLine.querySelector('.output');
                 await typeText(outputSpan, item.text, 30);
-                
+
                 // Aguarda um pouco após o output
                 await new Promise(resolve => setTimeout(resolve, item.delay));
             }
         }
-        
+
         // Adiciona a linha final com cursor piscando
         const finalLine = document.createElement('div');
         finalLine.className = 'terminal-line';
@@ -138,13 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para calcular estatísticas dinâmicas
     function updateProfileStats() {
         const currentDate = new Date();
-        
+
         // Cálculo de semestres (Início: Maio 2024)
         const collegeStartDate = new Date(2024, 4, 1); // Mês 4 é Maio (0-indexed)
-        const monthsInCollege = (currentDate.getFullYear() - collegeStartDate.getFullYear()) * 12 + 
-                               (currentDate.getMonth() - collegeStartDate.getMonth());
+        const monthsInCollege = (currentDate.getFullYear() - collegeStartDate.getFullYear()) * 12 +
+            (currentDate.getMonth() - collegeStartDate.getMonth());
         const currentSemester = Math.floor(monthsInCollege / 6) + 1;
-        
+
         const semesterElement = document.getElementById('semesters-count');
         if (semesterElement) {
             semesterElement.textContent = currentSemester;
@@ -153,10 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Cálculo de anos de experiência (Início: Abril 2022)
         const programmingStartDate = new Date(2022, 3, 1); // Mês 3 é Abril
-        const monthsExperience = (currentDate.getFullYear() - programmingStartDate.getFullYear()) * 12 + 
-                                (currentDate.getMonth() - programmingStartDate.getMonth());
+        const monthsExperience = (currentDate.getFullYear() - programmingStartDate.getFullYear()) * 12 +
+            (currentDate.getMonth() - programmingStartDate.getMonth());
         const yearsExperience = Math.floor(monthsExperience / 12);
-        
+
         const experienceElement = document.getElementById('experience-years');
         if (experienceElement) {
             experienceElement.textContent = yearsExperience;
@@ -167,25 +167,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Atualiza as estatísticas antes das animações
     updateProfileStats();
 
+    // Flag para evitar múltiplas animações
+    let countersAnimated = false;
+
     // Animação de contadores
     function animateCounters() {
+        if (countersAnimated) return;
+        countersAnimated = true;
+
         const counters = document.querySelectorAll('.stat-number');
-        
+
         counters.forEach(counter => {
-            const target = parseInt(counter.textContent);
+            // Tenta pegar o alvo do dataset, se não existir, pega do texto atual e salva no dataset
+            let target = counter.dataset.target ? parseInt(counter.dataset.target) : parseInt(counter.textContent);
+
+            // Se não tiver data-target ainda, define para usos futuros
+            if (!counter.dataset.target) {
+                counter.dataset.target = target;
+            }
+
             const increment = target / 100;
             let current = 0;
-            
+            const hasPlus = counter.textContent.includes('+');
+
             const updateCounter = () => {
                 if (current < target) {
                     current += increment;
                     counter.textContent = Math.ceil(current);
                     requestAnimationFrame(updateCounter);
                 } else {
-                    counter.textContent = target + (counter.textContent.includes('+') ? '+' : '');
+                    counter.textContent = target + (hasPlus ? '+' : '');
                 }
             };
-            
+
             updateCounter();
         });
     }
@@ -200,17 +214,17 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
-                
+
                 // Anima contadores quando a seção about entra em vista
                 if (entry.target.classList.contains('about')) {
                     animateCounters();
                 }
-                
+
                 // Anima Skill Tree quando entra em vista
                 if (entry.target.classList.contains('skills')) {
                     initSkillTree();
                 }
-                
+
                 // Anima projetos quando entram em vista
                 if (entry.target.classList.contains('projects')) {
                     const projectCards = entry.target.querySelectorAll('.project-card');
@@ -234,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.particles, .grid-overlay');
-        
+
         parallaxElements.forEach(element => {
             const speed = 0.5;
             element.style.transform = `translateY(${scrolled * speed}px)`;
@@ -243,13 +257,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Efeito de glitch aleatório no logo
     const logo = document.querySelector('.logo-text');
-    
+
     function randomGlitch() {
         logo.style.animation = 'none';
         setTimeout(() => {
             logo.style.animation = 'glitch-logo 0.3s ease';
         }, 10);
-        
+
         setTimeout(() => {
             logo.style.animation = 'none';
         }, 300);
@@ -260,13 +274,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Efeito de hover nos cards de projeto
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px) rotateX(5deg)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) rotateX(0)';
         });
     });
@@ -288,17 +302,17 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0.7;
             box-shadow: 0 0 10px var(--primary-color);
         `;
-        
+
         // Posição inicial aleatória
         particle.style.left = Math.random() * window.innerWidth + 'px';
         particle.style.top = window.innerHeight + 'px';
-        
+
         document.body.appendChild(particle);
-        
+
         // Animação da partícula
         const duration = Math.random() * 3000 + 2000;
         const drift = (Math.random() - 0.5) * 100;
-        
+
         particle.animate([
             {
                 transform: `translateY(0px) translateX(0px)`,
@@ -343,13 +357,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Efeito de hover no cursor
     const hoverElements = document.querySelectorAll('a, button, .skill-sector, .project-card');
-    
+
     hoverElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(1.5)';
             cursor.style.backgroundColor = 'var(--primary-color)';
         });
-        
+
         element.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
             cursor.style.backgroundColor = 'transparent';
@@ -406,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
             justify-content: center;
             transition: opacity 0.5s ease;
         `;
-        
+
         loader.innerHTML = `
             <div style="
                 font-family: var(--font-primary);
@@ -418,9 +432,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 LOADING...
             </div>
         `;
-        
+
         document.body.appendChild(loader);
-        
+
         setTimeout(() => {
             loader.style.opacity = '0';
             setTimeout(() => {
@@ -473,23 +487,23 @@ function initSkillTree() {
     const skillBranches = document.querySelectorAll('.skill-branches');
     skillBranches.forEach((branchContainer, sectorIndex) => {
         const branches = branchContainer.querySelectorAll('.skill-node');
-        
+
         branches.forEach((branch, branchIndex) => {
             // Calcular ângulo base do setor (cada setor tem 60°)
             const sectorAngle = sectorIndex * 60;
-            
+
             // Distribuir galhos dentro do setor com muito mais espalhamento
             const branchSpread = 70; // Total de 70° de espalhamento
             const angleStep = branchSpread / (branches.length - 1 || 1);
             const branchAngle = sectorAngle - (branchSpread / 2) + (branchIndex * angleStep);
-            
+
             // Variar o comprimento dos galhos com valores muito maiores
             const branchLength = 30 + (branchIndex % 4) * 60; // 150px, 200px, 250px, 300px
-            
+
             // Aplicar as variáveis CSS
             branch.style.setProperty('--branch-angle', `${branchAngle}deg`);
             branch.style.setProperty('--branch-length', `${branchLength}px`);
-            
+
             // Aplicar as mesmas variáveis para a linha do galho
             const branchLine = branch.previousElementSibling;
             if (branchLine && branchLine.classList.contains('branch-line')) {
@@ -501,31 +515,31 @@ function initSkillTree() {
 
     // Adicionar eventos de click para toggle dos galhos
     sectors.forEach(sector => {
-        sector.addEventListener('click', function(e) {
+        sector.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             console.log('Click detectado no setor:', sector.dataset.sector);
-            
+
             // Fechar todos os outros setores
             sectors.forEach(otherSector => {
                 if (otherSector !== sector) {
                     otherSector.classList.remove('active');
                 }
             });
-            
+
             // Toggle do setor atual
             sector.classList.toggle('active');
-            
+
             // Debug: verificar se os galhos existem
             const branches = sector.querySelector('.skill-branches');
             const branchLines = sector.querySelectorAll('.branch-line');
             const skillNodes = sector.querySelectorAll('.skill-node');
-            
+
             console.log('Galhos encontrados:', branches);
             console.log('Linhas dos galhos:', branchLines.length);
             console.log('Nós de habilidade:', skillNodes.length);
-            
+
             // Forçar exibição dos galhos via JavaScript
             if (sector.classList.contains('active')) {
                 branchLines.forEach(line => {
@@ -545,7 +559,7 @@ function initSkillTree() {
                     node.style.animation = '';
                 });
             }
-            
+
             console.log('Setor', sector.dataset.sector, 'ativado');
         });
     });
