@@ -135,6 +135,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicia a animação após 2 segundos
     setTimeout(executeTerminalSequence, 2000);
 
+    // Função para calcular estatísticas dinâmicas
+    function updateProfileStats() {
+        const currentDate = new Date();
+        
+        // Cálculo de semestres (Início: Maio 2024)
+        const collegeStartDate = new Date(2024, 4, 1); // Mês 4 é Maio (0-indexed)
+        const monthsInCollege = (currentDate.getFullYear() - collegeStartDate.getFullYear()) * 12 + 
+                               (currentDate.getMonth() - collegeStartDate.getMonth());
+        const currentSemester = Math.floor(monthsInCollege / 6) + 1;
+        
+        const semesterElement = document.getElementById('semesters-count');
+        if (semesterElement) {
+            semesterElement.textContent = currentSemester;
+            semesterElement.setAttribute('data-target', currentSemester);
+        }
+
+        // Cálculo de anos de experiência (Início: Abril 2022)
+        const programmingStartDate = new Date(2022, 3, 1); // Mês 3 é Abril
+        const monthsExperience = (currentDate.getFullYear() - programmingStartDate.getFullYear()) * 12 + 
+                                (currentDate.getMonth() - programmingStartDate.getMonth());
+        const yearsExperience = Math.floor(monthsExperience / 12);
+        
+        const experienceElement = document.getElementById('experience-years');
+        if (experienceElement) {
+            experienceElement.textContent = yearsExperience;
+            experienceElement.setAttribute('data-target', yearsExperience);
+        }
+    }
+
+    // Atualiza as estatísticas antes das animações
+    updateProfileStats();
+
     // Animação de contadores
     function animateCounters() {
         const counters = document.querySelectorAll('.stat-number');
